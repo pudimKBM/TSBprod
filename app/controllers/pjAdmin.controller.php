@@ -60,7 +60,7 @@ class pjAdmin extends pjAppController
 				->getData();
 			
 			
-			if(!$this->isEditor())
+			if(!$this->isEditor()|| !$this->isTemp())
 			{
 				$today_arr = $pjBookingSlotModel
 					->where("`booking_date` = CURDATE() AND `booking_id` IN (SELECT TB.id FROM `".$pjBookingModel->getTable()."` AS TB WHERE TB.booking_status='pending' OR TB.booking_status='confirmed')")
@@ -262,7 +262,7 @@ class pjAdmin extends pjAppController
 				$user = $user[0];
 				unset($user['password']);
 															
-				if (!in_array($user['role_id'], array(1,2,3)))
+				if (!in_array($user['role_id'], array(1,2,3)))// adicionar o id de uma nova classe de usuario 
 				{
 					# Login denied
 					pjUtil::redirect($_SERVER['PHP_SELF'] . "?controller=pjAdmin&action=pjActionLogin&err=2");
@@ -293,7 +293,7 @@ class pjAdmin extends pjAppController
     				$this->setForeignId($calendar[0]);
     			}
     			
-    			if ($this->isLoged())
+    			if ($this->isLoged())//essa é a linha que permite a visualisaçao de novas classes de usuarios 
     			{
 	    			pjUtil::redirect($_SERVER['PHP_SELF'] . "?controller=pjAdmin&action=pjActionIndex");
     			}

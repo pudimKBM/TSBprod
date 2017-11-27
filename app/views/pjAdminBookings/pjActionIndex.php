@@ -22,18 +22,23 @@ if (isset($tpl['status']))
 		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionSchedule"><?php __('booking_schedule'); ?></a></li>
 			<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionIndex"><?php __('menuBookings'); ?></a></li>
-			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjInvoice&amp;action=pjActionInvoices"><?php __('plugin_invoice_menu_invoices'); ?></a></li>
+			
 			<?php
 			if($controller->isAdmin())
 			{ 
 				?>
 				<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionExport"><?php __('lblExport'); ?></a></li>
+				
 				<?php
-			} 
-			?>
+			} if ($controller->isAdmin() || $controller->isEditor()){
+			    ?>
+			    <li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjInvoice&amp;action=pjActionInvoices"><?php __('plugin_invoice_menu_invoices'); ?></a></li>
+			    <?php }?>
 		</ul>
 	</div>
+	
 	<?php pjUtil::printNotice(__('infoBookingsTitle', true), __('infoBookingsDesc', true)); ?>
+	
 	<div class="b10">
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" class="float_left pj-form r10">
 			<input type="hidden" name="controller" value="pjAdminBookings" />

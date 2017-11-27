@@ -52,7 +52,7 @@ $jqDateFormat = pjUtil::jqDateFormat($tpl['option_arr']['o_date_format']);
 		<?php
 		foreach ($tpl['calendars'] as $calendar)
 		{
-			?><option value="<?php echo $calendar['id']; ?>"<?php echo $calendar['id'] == $_GET['calendar_id'] ? ' selected="selected"' : NULL;?>><?php echo pjSanitize::html($calendar['title']); ?></option><?php
+			?>?><option value="<?php echo $calendar['id']; ?>"<?php echo $calendar['id'] == $controller->getForeignId() ? ' selected="selected"' : NULL; ?>><?php echo pjSanitize::html($calendar['title']); ?></option><?php
 		}
 		?>
 	</select>

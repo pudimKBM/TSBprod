@@ -1,14 +1,14 @@
 <?php
-// if (isset($tpl['status']))
-// {
-// 	$status = __('status', true);
-// 	switch ($tpl['status'])
-// 	{
-// 		case 2:
-// 			pjUtil::printNotice(NULL, $status[2]);
-// 			break;
-// 	}
-// } else {
+if (isset($tpl['status']))
+{
+	$status = __('status', true);
+	switch ($tpl['status'])
+	{
+		case 2:
+			pjUtil::printNotice(NULL, $status[2]);
+			break;
+	}
+} else {
 	?>
 	<div class="dashboard_header">
 		<div class="dashboard_header_item">
@@ -35,7 +35,6 @@
 		<div class="dashboard_top">
 			<div class="dashboard_column_top"><?php __('dashboard_upcoming_bookings'); ?></div>
 			<div class="dashboard_column_top"><?php __('dashboard_latest_bookings'); ?></div>
-			<div class="dashboard_column_top dashboard_column_top_last"><?php __('dashboard_last_logged_users'); ?></div>
 		</div>
 		<div class="dashboard_middle">
 			<div class="dashboard_column">
@@ -133,5 +132,5 @@
 		</div>
 	</div>
 	<?php
-// }
+}
 ?>

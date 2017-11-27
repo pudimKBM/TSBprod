@@ -1,7 +1,8 @@
 <?php
 $active = " ui-tabs-active ui-state-active";
 ?>
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all b10">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all b10 container-fluid">
+<div class="row">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<?php
 		if ($controller->isAdmin())
@@ -34,4 +35,5 @@ $active = " ui-tabs-active ui-state-active";
 		}
 		?>
 	</ul>
+	</div>
 </div>

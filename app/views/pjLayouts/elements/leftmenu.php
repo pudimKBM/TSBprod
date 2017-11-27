@@ -5,9 +5,11 @@ if (pjObject::getPlugin('pjOneAdmin') !== NULL && $controller->isAdmin())
 }
 ?>
 <div class="leftmenu-top"></div>
+
 <div class="leftmenu-middle">
-	<ul class="menu">
-		<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionIndex" class="<?php echo $_GET['controller'] == 'pjAdmin' && $_GET['action'] == 'pjActionIndex' ? 'menu-focus' : NULL; ?>"><span class="menu-dashboard">&nbsp;</span><?php __('menuDashboard'); ?></a></li>
+<i class="fa fa-bars fa-2x toggle-btn col-sm-3 " data-toggle="collapse" data-target="#menu-content">Menu</i>	
+	<ul id="menu-content" class="menu menu-content collapse out">
+		<li ><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionIndex" class="<?php echo $_GET['controller'] == 'pjAdmin' && $_GET['action'] == 'pjActionIndex' ? 'menu-focus' : NULL; ?>"><span class="menu-dashboard">&nbsp;</span><?php __('menuDashboard'); ?></a></li>
 		<?php
 		if ($controller->isAdmin())
 		{
@@ -31,17 +33,14 @@ if (pjObject::getPlugin('pjOneAdmin') !== NULL && $controller->isAdmin())
 		if ($controller->isEditor())
 		{
 			?>
-			<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionProfile" class="<?php echo $_GET['controller'] == 'pjAdmin' && $_GET['action'] == 'pjActionProfile' ? 'menu-focus' : NULL; ?>"><span class="menu-profile">&nbsp;</span><?php __('menuProfile'); ?></a></li>
+			
+			
+			<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminTime&amp;action=pjActionIndex" class="<?php echo $_GET['controller'] == 'pjAdminTime' ? 'menu-focus' : NULL; ?>"><span class="menu-time">&nbsp;</span><?php __('menuTime'); ?></a></li>
 			<?php
-		}if ($controller->isLoged())
-		{
-		    
-	       ?>
-		    <li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionProfile" class="<?php echo $_GET['controller'] == 'pjAdmin' && $_GET['action'] == 'pjActionProfile' ? 'menu-focus' : NULL; ?>"><span class="menu-profile">&nbsp;</span><?php __('menuProfile'); ?></a></li>
-			<?php
-		}
+		}if (!$controller->isAdmin()){
 		?>
-		
+		  <li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionProfile" class="<?php echo $_GET['controller'] == 'pjAdmin' && $_GET['action'] == 'pjActionProfile' ? 'menu-focus' : NULL; ?>"><span class="menu-profile">&nbsp;</span><?php __('menuProfile'); ?></a></li>
+		 <?php }?> 
 		<li><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionLogout"><span class="menu-logout">&nbsp;</span><?php __('menuLogout'); ?></a></li>
 	</ul>
 </div>

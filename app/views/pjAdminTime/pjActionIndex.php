@@ -1,3 +1,5 @@
+<div class="conteiner-flluid">
+
 <?php
 if (isset($tpl['status']))
 {
@@ -158,10 +160,11 @@ if (isset($tpl['status']))
 			margin-right: 5px;
 		}
 	</style>
+	
 	<form id="frmPriceDefault" action="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminTime&amp;action=pjActionIndex" method="post" class="form pj-form">
 		<input type="hidden" name="working_time" value="1" />
 		<?php
-		if ($controller->isAdmin())
+		if ($controller->isAdmin()||$controller->isEditor())
 		{
 			?><input type="hidden" name="id" value="<?php echo (int) $tpl['wt_arr']['id']; ?>" /><?php
 		}
@@ -290,7 +293,7 @@ if (isset($tpl['status']))
 		</p>	
 		<p>
 			<label class="title">&nbsp;</label>
-			<input type="submit" value="<?php __('btnSave', false, true); ?>" class="pj-button float_left r10" />
+			<input type="submit" value="<?php __('btnSave', false, true); ?>"  />
 			<?php
 			$message =  __('lblSlotLimitation', true);
 			$message = str_replace("{AFTER}", date($tpl['option_arr']['o_time_format'], strtotime(date('Y-m-d') . ' 00:00:00')), $message);
@@ -307,3 +310,4 @@ if (isset($tpl['status']))
 	<?php
 }
 ?>
+</div>

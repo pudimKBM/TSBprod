@@ -145,6 +145,10 @@ class pjAppController extends pjController
     		{
     			$pjCalendarModel->where("t1.id IN (SELECT `TCU`.calendar_id FROM `".pjCalendarUserModel::factory()->getTable()."` AS `TCU` WHERE `TCU`.user_id=".$this->getUserId().")");
     		}
+    		if($this->isTemp())
+    		{
+    		    $pjCalendarModel->where("t1.id IN (SELECT `TCU`.calendar_id FROM `".pjCalendarUserModel::factory()->getTable()."` AS `TCU` WHERE `TCU`.user_id=".$this->getUserId().")");
+    		}
 	    	$calendars = $pjCalendarModel
 				->select('t1.*, t2.content AS `title`')
 				->join('pjMultiLang', "t2.model='pjCalendar' AND t2.foreign_id=t1.id AND t2.field='title' AND t2.locale='".$this->getLocaleId()."'", 'left')
@@ -178,6 +182,10 @@ class pjAppController extends pjController
     public function isEditor()
     {
     	return (int) $this->getRoleId() === 2;
+    }
+    public function isTemp()
+    {
+        return (int) $this->getRoleId() === 3;
     }
     
 	public function isInvoiceReady()

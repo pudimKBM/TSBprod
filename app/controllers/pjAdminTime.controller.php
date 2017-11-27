@@ -10,13 +10,17 @@ class pjAdminTime extends pjAdmin
 	
 	public function pjActionIndex()
 	{
-		$this->checkLogin();
+    	$this->checkLogin();
+    	if ($this->isAdmin()|| $this->isEditor()){
+//      funçao de subir permissao
+// 		if (!$this->isAdmin())
+// 		{
+// 			$this->set('status', 2);
+// 			return;
+// 		}
+    
 
-		if (!$this->isAdmin())
-		{
-			$this->set('status', 2);
-			return;
-		}
+
 		
 		if (isset($_POST['working_time']))
 		{
@@ -84,16 +88,17 @@ class pjAdminTime extends pjAdmin
 		$this->appendJs('jquery.validate.min.js', PJ_THIRD_PARTY_PATH . 'validate/');
 		$this->appendJs('pjAdminTime.js');
 	}
+	}
 	
 	public function pjActionCustom()
 	{
 		$this->checkLogin();
-
-		if (!$this->isAdmin())
-		{
-			$this->set('status', 2);
-			return;
-		}
+       if ($this->isAdmin() || $this->isEditor()){
+// 		if (!$this->isAdmin())
+// 		{
+// 			$this->set('status', 2);
+// 			return;
+// 		}
 		
 		if (isset($_POST['custom_time']))
 		{
@@ -183,12 +188,13 @@ class pjAdminTime extends pjAdmin
 		$this->appendJs('jquery.datagrid.js', PJ_FRAMEWORK_LIBS_PATH . 'pj/js/');
 		$this->appendJs('pjAdminTime.js');
 	}
+	}
 	
 	public function pjActionDeleteDate()
 	{
 		$this->setAjax(true);
 	
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() && ($this->isAdmin() || $this->isEditor()))
 		{
 			if (isset($_GET['id']) && (int) $_GET['id'] > 0)
 			{
@@ -219,7 +225,7 @@ class pjAdminTime extends pjAdmin
 	{
 		$this->setAjax(true);
 	
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() && ($this->isAdmin() || $this->isEditor()))
 		{
 			if (isset($_POST['record']) && !empty($_POST['record']))
 			{
@@ -248,7 +254,7 @@ class pjAdminTime extends pjAdmin
 	{
 		$this->setAjax(true);
 	
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() && ($this->isAdmin()|| $this->isEditor()))
 		{
 			$pjDateModel = pjDateModel::factory();
 				
@@ -301,7 +307,7 @@ class pjAdminTime extends pjAdmin
 	{
 		$this->setAjax(true);
 	
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() &&($this->isAdmin() || $this->isEditor()))
 		{
 			
 		}
@@ -311,7 +317,7 @@ class pjAdminTime extends pjAdmin
 	{
 		$this->setAjax(true);
 	
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() && ($this->isAdmin() || $this->isEditor()))
 		{
 			if (isset($_GET['id']) && (int) $_GET['id'] > 0 && isset($_POST['column']) && isset($_POST['value']) && !empty($_POST['column']))
 			{
@@ -344,12 +350,12 @@ class pjAdminTime extends pjAdmin
 	public function pjActionUpdateCustom()
 	{
 		$this->checkLogin();
-
-		if (!$this->isAdmin())
-		{
-			$this->set('status', 2);
-			return;
-		}
+    if ($this->isAdmin()|| $this->isEditor()){
+// 		if (!$this->isAdmin())
+// 		{
+// 			$this->set('status', 2);
+// 			return;
+// 		}
 		
 		if (isset($_POST['custom_time']))
 		{
@@ -448,12 +454,13 @@ class pjAdminTime extends pjAdmin
 		$this->appendJs('jquery.validate.min.js', PJ_THIRD_PARTY_PATH . 'validate/');
 		$this->appendJs('pjAdminTime.js');
 	}
+	}
 
 	public function pjActionGetPrices()
 	{
 		$this->setAjax(true);
 		
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() &&($this->isAdmin() || $this->isEditor()))
 		{
 			$this->set('wt_arr', pjWorkingTimeModel::factory()
 				->where('t1.foreign_id', $this->getForeignId())
@@ -479,7 +486,7 @@ class pjAdminTime extends pjAdmin
 	{
 		$this->setAjax(true);
 		
-		if ($this->isXHR() && $this->isLoged() && $this->isAdmin())
+		if ($this->isXHR() && $this->isLoged() && ($this->isAdmin() || $this->isEditor()))
 		{
 			if (!isset($_POST['day']) || !in_array($_POST['day'], $this->weekDays))
 			{

@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 	<head>
 		<title><?php __('front_cancel_title'); ?></title>
 		<meta charset="utf-8">

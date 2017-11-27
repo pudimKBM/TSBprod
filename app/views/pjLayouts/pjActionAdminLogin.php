@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
-		<title>Time Slots Booking Calendar</title>
+		<title>Atleta.co</title>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width">
 		<?php
 		foreach ($controller->getCss() as $css)
 		{
@@ -16,23 +18,29 @@
 		?>
 	</head>
 	<body>
-		<div id="container">
-			<div id="header">
+	<div class ="div_teste">
+	
+		<div  class="container-fluid">
+		<div class="row">
+		
 				<div id="logo">
-    				<a href="https://www.phpjabbers.com/time-slots-booking-calendar/" target="_blank" rel="nofollow">Time Slots Booking Calendar</a>
+    				<a href="" target="_blank" rel="nofollow">Atleta.co</a>
 					<span>v<?php echo PJ_SCRIPT_VERSION;?></span>
     			</div>
-			</div>
-			<div id="middle">
+			
+			
 				<div id="login-content">
 				<?php require $content_tpl; ?>
 				</div>
-			</div> <!-- middle -->
-		</div> <!-- container -->
-		<div id="footer-wrap">
-			<div id="footer">
-			   	<p>Copyright &copy; <?php echo date("Y"); ?> <a href="https://www.PHPJabbers.com" target="_blank">PHPJabbers.com</a></p>
-	        </div>
+			 <!-- middle -->
+		 <!-- container -->
+      
         </div>
+		 
+		</div>
+
+		</div>
+		
+
 	</body>
 </html>

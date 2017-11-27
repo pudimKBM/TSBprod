@@ -16,8 +16,10 @@ if (isset($tpl['status']))
 		<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionSchedule"><?php __('booking_schedule'); ?></a></li>
 			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionIndex"><?php __('menuBookings'); ?></a></li>
+			<?php if (!$controller->isTemp()){?>
 			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjInvoice&amp;action=pjActionInvoices"><?php __('plugin_invoice_menu_invoices'); ?></a></li>
 			<li class="ui-state-default ui-corner-top"><a href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdminBookings&amp;action=pjActionExport"><?php __('lblExport'); ?></a></li>
+		<?php }?>
 		</ul>
 	</div>
 	
@@ -28,13 +30,11 @@ if (isset($tpl['status']))
 		<div id="tabs">
 			<ul>
 				<li><a href="#tabs-1"><?php __('booking_tab_details'); ?></a></li>
-			<!-- 	<li><a href="#tabs-2"><?php// __('booking_tab_client'); ?></a></li> -->
-				<?php if (pjObject::getPlugin('pjInvoice') !== NULL) : 
-				if ($controller->isAdmin() || $controller->isEditor())
-				{?>
+				<!-- 	<li><a href="#tabs-2"><?php// __('booking_tab_client'); ?></a></li> -->
+				<?php if (pjObject::getPlugin('pjInvoice') !== NULL) :
+				           if(!$controller->isTemp()){?>
 				<li><a href="#tabs-3"><?php __('plugin_invoice_menu_invoices'); ?></a></li>
-				<?php }?>
-				<?php endif; ?>
+				<?php }endif; ?>
 			</ul>
 			
 			<div id="tabs-1">
@@ -115,7 +115,7 @@ if (isset($tpl['status']))
 							</p>
 							<br/>
 							<p>
-								<!-- <input type="submit" value="<?php// __('btnSave', false, true); ?>" class="pj-button" /> -->
+							<!-- <input type="submit" value="<?php// __('btnSave', false, true); ?>" class="pj-button" /> -->
 								<!--  <input type="button" value="<?php// __('btnCancel'); ?>" class="pj-button" onclick="window.location.href='<?php //echo PJ_INSTALL_URL; ?>index.php?controller=pjAdminBookings&action=pjActionIndex';" />-->
 							</p>
 							
@@ -230,6 +230,7 @@ if (isset($tpl['status']))
 					<legend><?php __('booking_customer'); ?></legend>
 					
 					<div class="float_left w360">
+					<input id="hide" type="button" value="dados extras" class="pj-button"  /><p>
 						<p>
 							<label class="title"><?php __('booking_country'); ?>:</label>
 							<select name="customer_country" id="customer_country" class="pj-form-field w180 custom-chosen<?php echo $tpl['option_arr']['o_bf_country'] == 3 ? ' required' : NULL; ?>">
@@ -242,17 +243,17 @@ if (isset($tpl['status']))
 								?>
 							</select>
 						</p>
-						<p>
+						<p class = "IE">
 							<label class="title"><?php __('booking_state'); ?>:</label>
 							<input type="text" name="customer_state" id="customer_state" class="pj-form-field w180<?php echo $tpl['option_arr']['o_bf_state'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_state']); ?>" />
 						</p>
 					</div>
 					<div class="float_right w350">
-						<p>
+						<p class="IE">
 							<label class="title"><?php __('booking_city'); ?>:</label>
 							<input type="text" name="customer_city" id="customer_city" class="pj-form-field w160<?php echo $tpl['option_arr']['o_bf_city'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_city']); ?>" />
 						</p>
-						<p>
+						<p class="IE">
 							<label class="title"><?php __('booking_zip'); ?>:</label>
 							<input type="text" name="customer_zip" id="customer_zip" class="pj-form-field w80<?php echo $tpl['option_arr']['o_bf_zip'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_zip']); ?>" />
 						</p>
@@ -260,33 +261,33 @@ if (isset($tpl['status']))
 					<br class="clear_both" />
 					<p>
 						<label class="title"><?php __('booking_name'); ?>:</label>
-						<input type="text" name="customer_name" id="customer_name" class="pj-form-field w300<?php echo $tpl['option_arr']['o_bf_name'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_name']); ?>" />
+						<input placeholder="Antonio Vinicius" type="text" name="customer_name" id="customer_name" class="pj-form-field w300<?php echo $tpl['option_arr']['o_bf_name'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_name']); ?>" />
 					</p>
 					<p>
 						<label class="title"><?php __('booking_email'); ?>:</label>
 						<span class="pj-form-field-custom pj-form-field-custom-before">
 							<span class="pj-form-field-before"><abbr class="pj-form-field-icon-email"></abbr></span>
-							<input type="text" name="customer_email" id="customer_email" class="pj-form-field email w250<?php echo $tpl['option_arr']['o_bf_email'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_email']); ?>" />
+							<input placeholder="Antonio@gmail.com" type="text" name="customer_email" id="customer_email" class="pj-form-field email w250<?php echo $tpl['option_arr']['o_bf_email'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_email']); ?>" />
 						</span>
 					</p>
 					<p>
 						<label class="title"><?php __('booking_phone'); ?>:</label>
 						<span class="pj-form-field-custom pj-form-field-custom-before">
 							<span class="pj-form-field-before"><abbr class="pj-form-field-icon-phone"></abbr></span>
-							<input type="text" name="customer_phone" id="customer_phone" class="pj-form-field w250<?php echo $tpl['option_arr']['o_bf_phone'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_phone']); ?>" />
+							<input placeholder="(11)123456789" type="text" name="customer_phone" id="customer_phone" class="pj-form-field w250<?php echo $tpl['option_arr']['o_bf_phone'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_phone']); ?>" />
 						</span>
 					</p>
-					<p>
+					<p class="IE">
 						<label class="title"><?php __('booking_address_1'); ?>:</label>
 						<input type="text" name="customer_address_1" id="customer_address_1" class="pj-form-field w500<?php echo $tpl['option_arr']['o_bf_address_1'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_address_1']); ?>" />
 					</p>
-					<p>
+					<p class="IE">
 						<label class="title"><?php __('booking_address_2'); ?>:</label>
 						<input type="text" name="customer_address_2" id="customer_address_2" class="pj-form-field w500<?php echo $tpl['option_arr']['o_bf_address_2'] == 3 ? ' required' : NULL; ?>" value="<?php echo pjSanitize::html($tpl['arr']['customer_address_2']); ?>" />
 					</p>
 					<p>
 						<label class="title"><?php __('booking_notes'); ?>:</label>
-						<textarea name="customer_notes" id="customer_notes" class="pj-form-field w500 h120"><?php echo pjSanitize::html($tpl['arr']['customer_notes']); ?></textarea>
+						<textarea placeholder="campo obrigatorio em caso de cancelamento" name="customer_notes" id="customer_notes" class="pj-form-field w500 h120"><?php echo pjSanitize::html($tpl['arr']['customer_notes']); ?></textarea>
 					</p>
 					<p>
 						<label class="title">&nbsp;</label>
@@ -297,6 +298,7 @@ if (isset($tpl['status']))
 				
 			</div>
 			<?php
+			if (!$controller->isTemp()){
 			if (pjObject::getPlugin('pjInvoice') !== NULL)
 			{
 				$map = array(
@@ -306,8 +308,6 @@ if (isset($tpl['status']))
 					'cancelled' => 'cancelled'
 				);
 				?>
-				<?php if ($controller->isAdmin()|| $controller->isEditor()){
-				?>
 				<div id="tabs-3">
 					<fieldset class="fieldset white" style="position: static">
 						<legend><?php __('booking_invoice_details'); ?></legend>
@@ -316,8 +316,8 @@ if (isset($tpl['status']))
 						<div id="grid_invoices" class="t10 b10"></div>
 					</fieldset>
 				</div>
-				<?php }?>
 				<?php
+			}
 			}
 			?>
 		</div>
@@ -443,6 +443,20 @@ if (isset($tpl['status']))
 	myLabel.empty_datetime = "<?php __('gridEmptyDatetime', false, true); ?>";
 	myLabel.invalid_datetime = "<?php __('gridInvalidDatetime', false, true); ?>";
 	myLabel.select_slots = "<?php __('lblSelectSlotToBook', false, true); ?>";
+	$(document).ready(function(){
+		x=1;
+		$(".IE").hide();
+		$("#hide").click(function(){
+			if (x == 1){
+			$(".IE").show();
+			x=2;
+			}else{
+			$(".IE").hide();
+			x=1;
+				}
+		})
+	});
+
 	</script>
 	<?php
 }
