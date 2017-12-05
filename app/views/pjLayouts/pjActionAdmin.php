@@ -1,6 +1,6 @@
 <!doctype html>
 <html  >
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=0.7 , maximum-scale=1 ">
 	<head>
 		<title>Atleta.co</title>
 		
@@ -51,6 +51,9 @@
 			</div>
 		
        </div> <!-- container -->
-        
+        </div>
+      
+       
+       
 	</body>
 </html>
