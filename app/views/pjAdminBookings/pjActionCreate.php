@@ -213,7 +213,7 @@ if (isset($tpl['status']))
 					<legend><?php __('booking_customer'); ?></legend>
 					
 					<div class="float_left w360">
-						<input id="hide" type="button" value="dados extras" class="pj-button"  /><p>
+						<input id="hide" type="button" value="dados extras" class="pj-button"  /><p class = "IE">
 							<label class="title"><?php __('booking_country'); ?>:</label>
 							<select name="customer_country" id="customer_country" class="pj-form-field w180 custom-chosen<?php echo $tpl['option_arr']['o_bf_country'] == 3 ? ' required' : NULL; ?>">
 								<option value=""><?php __('booking_choose'); ?></option>

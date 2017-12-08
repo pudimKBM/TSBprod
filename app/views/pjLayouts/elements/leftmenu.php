@@ -9,12 +9,12 @@ if (pjObject::getPlugin('pjOneAdmin') !== NULL && $controller->isAdmin()) {
 
 
 
-<div class="dropdown show">
-  <a class="btn btn-lg btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="dropdown">
+  <a class="btn btn-lg btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     Menu
   </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><font size = "4">
     
 	<a
 			href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionIndex" class = "dropdown-item"><!--
@@ -79,8 +79,10 @@ if (!$controller->isAdmin()) {
 		<a
 			href="<?php echo $_SERVER['PHP_SELF']; ?>?controller=pjAdmin&amp;action=pjActionLogout" class = "dropdown-item"><!-- <span
 				class="menu-logout">&nbsp;</span> --><?php __('menuLogout'); ?></a>
+				</font>
   </div>
 </div>
+
 
 
 
